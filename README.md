@@ -25,3 +25,4 @@ There will be several types of requests:
 most relevant products.
 * Product page: Given a string (what the user has entered in the search box before clicking Search)
 return a list of all products, sorted by relevance, that match this search string.
+The back-end part of the project will be implemented with Java 8 and Spark as a web-server.
