@@ -5,13 +5,25 @@
         <meta charset="utf-8">
         <meta name="author" content="Alexander Georgiev,Ralitsa Dimitrova">
         <meta name="keywords" content="Lidl Digital Hackathon">
-        <link rel="icon" href="assets/favicon.ico">
+        <link rel="icon" href="images/favicon.ico">
         <link rel="stylesheet" type="text/css" href="styles/common.css">
-        <link rel="stylesheet" type="text/css" href="styles/fontawesome.min.css">
         <script src="scripts/common.js"></script>
     </head>
 
-    <body>
-        Foo!
+    <body onload="focusSearch();">
+        <div class="wrapper">
+            <div class="container">
+                <div class="searchbox">
+                    <div class="searchbox-logo">
+                    </div>
+                    <textarea class="searchbox-text" rows="1" id="search-input" oninput="inputEvent();">
+                    </textarea>
+                    <div class="searchbox-button noselect">
+                        <!-- <i class="far fa-search"></i> -->
+                        search
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
