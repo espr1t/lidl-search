@@ -247,4 +247,5 @@ div.searchbox-button {
     display: inline-block;
     position: absolute;
     border-radius: 0.5rem;
+    cursor: pointer;
 }

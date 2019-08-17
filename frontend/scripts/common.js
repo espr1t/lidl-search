@@ -25,6 +25,8 @@ function ajaxCall(url, data, callback) {
 function focusSearch() {
     var searchBox = document.getElementById('search-input');
     searchBox.value = '';
+    searchBox.onkeypress = function(event) {checkEnter(event);};
+    searchBox.oninput = function(event) {inputEvent();};
     searchBox.focus();
 }
 
@@ -34,6 +36,15 @@ function inputEvent() {
         window.clearTimeout(scheduledEvent);
     }
     scheduledEvent = window.setTimeout(updateSuggestions, 100);
+}
+
+function checkEnter(event) {
+    var keyCode = event.keyCode || event.which || 0;
+    if (keyCode == 13) {
+        event.preventDefault();
+        event.stopPropagation();
+        getResults();
+    }
 }
 
 function updateSuggestions() {
@@ -48,9 +59,10 @@ function updateSuggestions() {
 }
 
 function showSuggestions(response) {
-    console.log("Response: " + response)
+    console.log("Response: " + response);
 }
 
 function getResults() {
+    console.log("Sending results query.");
     // TODO
 }
