@@ -249,3 +249,21 @@ div.searchbox-button {
     border-radius: 0.5rem;
     cursor: pointer;
 }
+
+div.suggestions {
+    text-align: center;
+    width: 48rem;
+    position: absolute;
+    top: 50%;
+    margin-left: 1.5rem;
+    margin-top: +2.25rem;
+}
+
+div.suggestion {
+    width: 48rem;
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}

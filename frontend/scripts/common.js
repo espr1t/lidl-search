@@ -22,6 +22,10 @@ function ajaxCall(url, data, callback) {
     xhttp.send(args);
 }
 
+function redirect(url) {
+    window.location = url;
+}
+
 function focusSearch() {
     var searchBox = document.getElementById('search-input');
     searchBox.value = '';
@@ -59,10 +63,25 @@ function updateSuggestions() {
 }
 
 function showSuggestions(response) {
-    console.log("Response: " + response);
+    responseObject = JSON.parse(response);
+    var suggestions = document.getElementById('suggestions');
+    suggestions.innerHTML = '';
+    var items = responseObject["items"];
+    for (var item of items) {
+        console.log(item);
+        var suggestion = document.createElement("div");
+        suggestion.innerHTML = '<b>' + item['name'] + '</b>' + ' by ' + '<b>' + item['vendor'] + '</b>';
+        suggestion.className = 'suggestion';
+        suggestions.appendChild(suggestion);
+    }
 }
 
 function getResults() {
-    console.log("Sending results query.");
-    // TODO
+    var searchBox = document.getElementById('search-input');
+
+    var url = "file:///Users/alexgeorgiev/Desktop/lidl/lidl-search/frontend/results.html";
+    url += "?" + encodeURI(encodeURI(searchBox.value));
+
+    console.log(url);
+    redirect(url);
 }
