@@ -1,4 +1,4 @@
-API_ENDPOINT_AUTOCOMPLETE = 'http://localhost:4567/complete';
+API_ENDPOINT_AUTOCOMPLETE = 'http://localhost:4567/auto';
 API_ENDPOINT_RESULTS = 'http://localhost:4567/results';
 
 function ajaxCall(url, data, callback) {
@@ -39,7 +39,7 @@ function inputEvent() {
     if (scheduledEvent !== null) {
         window.clearTimeout(scheduledEvent);
     }
-    scheduledEvent = window.setTimeout(updateSuggestions, 100);
+    scheduledEvent = window.setTimeout(updateSuggestions, 200);
 }
 
 function checkEnter(event) {
@@ -55,7 +55,7 @@ function updateSuggestions() {
     scheduledEvent = null;
     var searchBox = document.getElementById('search-input');
     console.log(searchBox.value);
-    var suggestions = ajaxCall(
+    ajaxCall(
         API_ENDPOINT_AUTOCOMPLETE,
         {"text": searchBox.value},
         showSuggestions
@@ -80,8 +80,38 @@ function getResults() {
     var searchBox = document.getElementById('search-input');
 
     var url = "file:///Users/alexgeorgiev/Desktop/lidl/lidl-search/frontend/results.html";
-    url += "?" + encodeURI(encodeURI(searchBox.value));
+    url += "?" + encodeURI(searchBox.value);
 
     console.log(url);
     redirect(url);
+}
+
+function fillResults() {
+    var search = decodeURI(window.location.search.substr(1));
+    console.log(search);
+    ajaxCall(
+        API_ENDPOINT_RESULTS,
+        {"text": search},
+        showResults
+    );
+}
+
+function showResults(response) {
+    responseObject = JSON.parse(response);
+    var container = document.getElementById('container');
+    var items = responseObject["items"];
+    var imageName = 'product00' + (Math.round(Math.random() * 7) + 1);
+    console.log("Number of items: " + items.length);
+    for (var item of items) {
+        console.log(item);
+        var result = document.createElement("div");
+        result.innerHTML = '' +
+            '<div class="result-name">' + item['name'] + '</div>' +
+            'by' +
+            '<div class="result-vendor">' + item['vendor'] + '</div>' +
+            '<div class="result-image">' + imageName + '</div>';
+        result.className = 'result';
+        container.appendChild(result);
+        console.log("Here?");
+    }
 }

@@ -267,3 +267,31 @@ div.suggestion {
     margin-bottom: 0.5rem;
     cursor: pointer;
 }
+
+div.result {
+    width: 14rem;
+    height: 20rem;
+    border: 0.0625rem solid #ccc;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.24);
+    border-radius: 0.5rem;
+    padding: 1rem 1rem;
+    text-align: center;
+    display: inline-block;
+    margin: 0.25rem;
+}
+
+div.result-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+div.result-vendor {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+div.result-image {
+    width: 100%;
+    height: 14rem;
+    text-align: center;
+}
