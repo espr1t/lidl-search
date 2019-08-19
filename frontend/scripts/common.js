@@ -100,18 +100,19 @@ function showResults(response) {
     responseObject = JSON.parse(response);
     var container = document.getElementById('container');
     var items = responseObject["items"];
-    var imageName = 'product00' + (Math.round(Math.random() * 7) + 1);
-    console.log("Number of items: " + items.length);
     for (var item of items) {
         console.log(item);
+
+        var imageName = 'product_00' + (Math.round(Math.random() * 7) + 1) + '.jpg';
+        var image = '<image src="images/products/' + imageName + '" width="224" height="224">';
+
         var result = document.createElement("div");
         result.innerHTML = '' +
             '<div class="result-name">' + item['name'] + '</div>' +
             'by' +
             '<div class="result-vendor">' + item['vendor'] + '</div>' +
-            '<div class="result-image">' + imageName + '</div>';
+            '<div class="result-image">' + image + '</div>';
         result.className = 'result';
         container.appendChild(result);
-        console.log("Here?");
     }
 }
